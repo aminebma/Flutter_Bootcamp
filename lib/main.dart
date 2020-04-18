@@ -49,36 +49,52 @@ class MyApp extends StatelessWidget {
 ////              )
 //            ],
 //          ),
-          child: Row(
-            //mainAxisSize: MainAxisSize.min,
-            //verticalDirection: VerticalDirection.up,
-            //mainAxisAlignment: MainAxisAlignment.center,
-            //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //crossAxisAlignment: CrossAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+//          child: Row(
+//            //mainAxisSize: MainAxisSize.min,
+//            //verticalDirection: VerticalDirection.up,
+//            //mainAxisAlignment: MainAxisAlignment.center,
+//            //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//            //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//            //crossAxisAlignment: CrossAxisAlignment.end,
+//            crossAxisAlignment: CrossAxisAlignment.stretch,
+//            children: <Widget>[
+//              Container(
+//                //margin: EdgeInsets.all(20.0),
+//                //margin: EdgeInsets.symmetric(vertical: 50.0, horizontal: 10.0),
+//                //margin: EdgeInsets.only(left: 30.0),
+//                //padding: EdgeInsets.all(20.0),
+//                width: 30.0,
+//                color: Colors.green,
+//                child: Text('Container 1'),
+//              ),
+//              SizedBox(
+//                width: 30.0,
+//              ),
+//              Container(
+//                color: Colors.red,
+//                child: Text('Container 2'),
+//              ),
+//              Container(
+//                width: 100.0,
+//                color: Colors.white,
+//                child: Text('Container 3'),
+//              ),
+//            ],
+//          ),
+          child: Column(
             children: <Widget>[
-              Container(
-                //margin: EdgeInsets.all(20.0),
-                //margin: EdgeInsets.symmetric(vertical: 50.0, horizontal: 10.0),
-                //margin: EdgeInsets.only(left: 30.0),
-                //padding: EdgeInsets.all(20.0),
-                width: 30.0,
-                color: Colors.green,
-                child: Text('Container 1'),
+              CircleAvatar(
+                radius: 50.0,
+                backgroundColor: Colors.red,
+                backgroundImage: AssetImage('images/amine.png'),
               ),
-              SizedBox(
-                width: 30.0,
-              ),
-              Container(
-                color: Colors.red,
-                child: Text('Container 2'),
-              ),
-              Container(
-                width: 100.0,
-                color: Colors.white,
-                child: Text('Container 3'),
-              ),
+              Text(
+                'Amine BENBAKHTA',
+                style: TextStyle(
+                    fontSize: 35.0,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold),
+              )
             ],
           ),
         ),
