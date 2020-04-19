@@ -91,9 +91,21 @@ class MyApp extends StatelessWidget {
               Text(
                 'Amine BENBAKHTA',
                 style: TextStyle(
-                    fontSize: 35.0,
                     color: Colors.white,
-                    fontWeight: FontWeight.bold),
+                    fontSize: 30.0,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Pacifico',
+                    letterSpacing: 2.5),
+              ),
+              Text(
+                'PROJECT MANAGER',
+                style: TextStyle(
+                  color: Colors.teal[100],
+                  fontSize: 25.0,
+                  fontWeight: FontWeight.w400,
+                  fontFamily: 'Source Sans Pro',
+                  letterSpacing: 2.0,
+                ),
               )
             ],
           ),
