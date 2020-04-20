@@ -15,7 +15,23 @@ class BallPage extends StatelessWidget {
         title: Text('Ask me anything.'),
         backgroundColor: Colors.blue[900],
       ),
-      body: Container(),
+      body: Ball(),
+    );
+  }
+}
+
+class Ball extends StatefulWidget {
+  @override
+  _BallState createState() => _BallState();
+}
+
+class _BallState extends State<Ball> {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Image(
+        image: AssetImage('images/ball1.png'),
+      ),
     );
   }
 }
