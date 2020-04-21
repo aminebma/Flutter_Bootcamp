@@ -9,55 +9,51 @@ class XylophoneApp extends StatelessWidget {
     player.play('note$noteNum.wav');
   }
 
+  Widget buildKey({int noteNum, Color noteColor}) {
+    List<String> notes = [
+      'C',
+      'D',
+      'E',
+      'F',
+      'G',
+      'A',
+      'B',
+    ];
+    return Expanded(
+      child: FlatButton(
+        onPressed: () {
+          playSound(noteNum);
+        },
+        color: noteColor,
+        child: Text(
+          notes[noteNum - 1],
+          style: TextStyle(
+            fontSize: 30.0,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        backgroundColor: Colors.black,
         body: SafeArea(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              FlatButton(
-                onPressed: () {
-                  playSound(1);
-                },
-                color: Colors.red,
-              ),
-              FlatButton(
-                onPressed: () {
-                  playSound(2);
-                },
-                color: Colors.deepOrange,
-              ),
-              FlatButton(
-                onPressed: () {
-                  playSound(3);
-                },
-                color: Colors.yellow,
-              ),
-              FlatButton(
-                onPressed: () {
-                  playSound(4);
-                },
-                color: Colors.green[900],
-              ),
-              FlatButton(
-                onPressed: () {
-                  playSound(5);
-                },
-                color: Colors.teal[700],
-              ),
-              FlatButton(
-                onPressed: () {
-                  playSound(6);
-                },
-                color: Colors.blue,
-              ),
-              FlatButton(
-                onPressed: () {
-                  playSound(7);
-                },
-                color: Colors.deepPurple,
-              ),
+              buildKey(noteNum: 1, noteColor: Colors.red),
+              buildKey(noteNum: 2, noteColor: Colors.deepOrange),
+              buildKey(noteNum: 3, noteColor: Colors.yellow),
+              buildKey(noteNum: 4, noteColor: Colors.green[900]),
+              buildKey(noteNum: 5, noteColor: Colors.teal[700]),
+              buildKey(noteNum: 6, noteColor: Colors.blue),
+              buildKey(noteNum: 7, noteColor: Colors.deepPurple),
             ],
           ),
         ),
