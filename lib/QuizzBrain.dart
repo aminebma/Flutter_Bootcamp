@@ -1,7 +1,9 @@
 import 'Question.dart';
 
 class QuizzBrain {
-  List<Question> questionsBank = [
+  int _questionNumber = 0;
+
+  List<Question> _questionsBank = [
     Question('You can lead a cow down stairs but not up stairs.', false),
     Question(
       'Approximately one quarter of human bones are in the feet.',
@@ -64,4 +66,11 @@ class QuizzBrain {
       true,
     ),
   ];
+
+  void nextQuestion() =>
+      _questionNumber = (_questionNumber + 1) % _questionsBank.length;
+
+  String getQuestionText() => _questionsBank[_questionNumber].questionText;
+
+  bool getQuestionAnswer() => _questionsBank[_questionNumber].questionAnswer;
 }
