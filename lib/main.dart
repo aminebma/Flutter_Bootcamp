@@ -27,22 +27,24 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
   List<Widget> scoreKeeper = [];
-//  List<String> questions = [
-//    'You can lead a cow down stairs but not up stairs.',
-//    'Approximately one quarter of human bones are in the feet.',
-//    'A slug\'s blood is green.',
-//  ];
-//  List<bool> answers = [
-//    false,
-//    true,
-//    true,
-//  ];
-
-//  Question q1 = new Question(
-//      question: 'You can lead a cow down stairs but not up stairs.',
-//      answer: false);
 
   QuizzBrain quizzBrain = new QuizzBrain();
+
+  void checkAnswer(bool userPickedAnswer) {
+    setState(() {
+      if (userPickedAnswer == quizzBrain.getQuestionAnswer())
+        scoreKeeper.add(Icon(
+          Icons.check,
+          color: Colors.green,
+        ));
+      else
+        scoreKeeper.add(Icon(
+          Icons.close,
+          color: Colors.red,
+        ));
+      quizzBrain.nextQuestion();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -81,13 +83,7 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 //The user picked true.
-                if (quizzBrain.getQuestionAnswer())
-                  print('Got it true');
-                else
-                  print('Got it wrong');
-                setState(() {
-                  quizzBrain.nextQuestion();
-                });
+                checkAnswer(true);
               },
             ),
           ),
@@ -105,14 +101,8 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                if (!quizzBrain.getQuestionAnswer())
-                  print('Got it right');
-                else
-                  print('Got it wrong');
-                //The user picked false.
-                setState(() {
-                  quizzBrain.nextQuestion();
-                });
+                //The user picked false
+                checkAnswer(false);
               },
             ),
           ),
