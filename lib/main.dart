@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'Question.dart';
+import 'QuizzBrain.dart';
 
 void main() => runApp(Quizzler());
 
@@ -42,19 +42,7 @@ class _QuizPageState extends State<QuizPage> {
 //      question: 'You can lead a cow down stairs but not up stairs.',
 //      answer: false);
 
-  List<Question> questionsBank = [
-    Question(
-        question: 'You can lead a cow down stairs but not up stairs.',
-        answer: false),
-    Question(
-      question: 'Approximately one quarter of human bones are in the feet.',
-      answer: true,
-    ),
-    Question(
-      question: 'A slug\'s blood is green.',
-      answer: true,
-    ),
-  ];
+  QuizzBrain quizzBrain = new QuizzBrain();
 
   int questionNumber = 0;
 
@@ -70,7 +58,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                questionsBank[questionNumber].questionText,
+                quizzBrain.questionsBank[questionNumber].questionText,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -95,12 +83,13 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 //The user picked true.
-                if (questionsBank[questionNumber].questionAnswer)
+                if (quizzBrain.questionsBank[questionNumber].questionAnswer)
                   print('Got it true');
                 else
                   print('Got it wrong');
                 setState(() {
-                  questionNumber = (questionNumber + 1) % questionsBank.length;
+                  questionNumber =
+                      (questionNumber + 1) % quizzBrain.questionsBank.length;
                 });
               },
             ),
@@ -119,13 +108,14 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                if (!questionsBank[questionNumber].questionAnswer)
+                if (!quizzBrain.questionsBank[questionNumber].questionAnswer)
                   print('Got it right');
                 else
                   print('Got it wrong');
                 //The user picked false.
                 setState(() {
-                  questionNumber = (questionNumber + 1) % questionsBank.length;
+                  questionNumber =
+                      (questionNumber + 1) % quizzBrain.questionsBank.length;
                 });
               },
             ),
