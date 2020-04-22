@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'Question.dart';
 
 void main() => runApp(Quizzler());
 
@@ -26,15 +27,33 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
   List<Widget> scoreKeeper = [];
-  List<String> questions = [
-    'You can lead a cow down stairs but not up stairs.',
-    'Approximately one quarter of human bones are in the feet.',
-    'A slug\'s blood is green.',
-  ];
-  List<bool> answers = [
-    false,
-    true,
-    true,
+//  List<String> questions = [
+//    'You can lead a cow down stairs but not up stairs.',
+//    'Approximately one quarter of human bones are in the feet.',
+//    'A slug\'s blood is green.',
+//  ];
+//  List<bool> answers = [
+//    false,
+//    true,
+//    true,
+//  ];
+
+//  Question q1 = new Question(
+//      question: 'You can lead a cow down stairs but not up stairs.',
+//      answer: false);
+
+  List<Question> questionsBank = [
+    Question(
+        question: 'You can lead a cow down stairs but not up stairs.',
+        answer: false),
+    Question(
+      question: 'Approximately one quarter of human bones are in the feet.',
+      answer: true,
+    ),
+    Question(
+      question: 'A slug\'s blood is green.',
+      answer: true,
+    ),
   ];
 
   int questionNumber = 0;
@@ -51,7 +70,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                questions[questionNumber],
+                questionsBank[questionNumber].questionText,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -76,12 +95,12 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 //The user picked true.
-                if (answers[questionNumber])
+                if (questionsBank[questionNumber].questionAnswer)
                   print('Got it true');
                 else
                   print('Got it wrong');
                 setState(() {
-                  questionNumber = (questionNumber + 1) % questions.length;
+                  questionNumber = (questionNumber + 1) % questionsBank.length;
                 });
               },
             ),
@@ -100,13 +119,13 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                if (!answers[questionNumber])
+                if (!questionsBank[questionNumber].questionAnswer)
                   print('Got it right');
                 else
                   print('Got it wrong');
                 //The user picked false.
                 setState(() {
-                  questionNumber = (questionNumber + 1) % questions.length;
+                  questionNumber = (questionNumber + 1) % questionsBank.length;
                 });
               },
             ),
