@@ -67,10 +67,20 @@ class QuizzBrain {
     ),
   ];
 
-  void nextQuestion() =>
-      _questionNumber = (_questionNumber + 1) % _questionsBank.length;
+  void nextQuestion() {
+    _questionNumber = (_questionNumber + 1) % _questionsBank.length;
+  }
 
   String getQuestionText() => _questionsBank[_questionNumber].questionText;
 
   bool getQuestionAnswer() => _questionsBank[_questionNumber].questionAnswer;
+
+  bool isFinished() {
+    if (_questionNumber == (_questionsBank.length - 1))
+      return true;
+    else
+      return false;
+  }
+
+  void reset() => _questionNumber = 0;
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'QuizzBrain.dart';
 
 void main() => runApp(Quizzler());
@@ -32,17 +33,38 @@ class _QuizPageState extends State<QuizPage> {
 
   void checkAnswer(bool userPickedAnswer) {
     setState(() {
-      if (userPickedAnswer == quizzBrain.getQuestionAnswer())
-        scoreKeeper.add(Icon(
-          Icons.check,
-          color: Colors.green,
-        ));
-      else
-        scoreKeeper.add(Icon(
-          Icons.close,
-          color: Colors.red,
-        ));
-      quizzBrain.nextQuestion();
+      if (quizzBrain.isFinished()) {
+        Alert(
+          context: context,
+          type: AlertType.success,
+          title: 'Quizz Finished !',
+          desc: 'You finished the quizz !',
+          buttons: [
+            DialogButton(
+              child: Text(
+                'Try again.',
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
+              onPressed: () => Navigator.pop(context),
+              width: 120,
+            )
+          ],
+        ).show();
+        quizzBrain.reset();
+        scoreKeeper = [];
+      } else {
+        if (userPickedAnswer == quizzBrain.getQuestionAnswer())
+          scoreKeeper.add(Icon(
+            Icons.check,
+            color: Colors.green,
+          ));
+        else
+          scoreKeeper.add(Icon(
+            Icons.close,
+            color: Colors.red,
+          ));
+        quizzBrain.nextQuestion();
+      }
     });
   }
 
