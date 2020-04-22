@@ -35,6 +35,14 @@ class StoryBrain {
         choice2: '')
   ];
 
+  Map<int, Map<int, int>> _choices = {
+    0: {1: 2, 2: 1},
+    2: {1: 5, 2: 4},
+    1: {1: 2, 2: 3},
+  };
+
+  List<int> _endStoriesBranch = [3, 4, 5];
+
   String getStory() => _storyData[0].storyTitle;
 
   String getChoice1() => _storyData[0].choice1;
@@ -42,29 +50,11 @@ class StoryBrain {
   String getChoice2() => _storyData[0].choice2;
 
   void nextStory(int choiceNumber) {
-    switch (_storyNumber) {
-      case 0:
-        if (choiceNumber == 1)
-          _storyNumber = 2;
-        else
-          _storyNumber = 1;
-        break;
-      case 1:
-        if (choiceNumber == 1)
-          _storyNumber = 2;
-        else
-          _storyNumber = 3;
-        break;
-      case 2:
-        if (choiceNumber == 1)
-          _storyNumber = 5;
-        else
-          _storyNumber = 4;
-        break;
-      default:
-        restart();
-        break;
-    }
+    if (_endStoriesBranch.contains(_storyNumber)) {
+      restart();
+      print('end of the story');
+    } else
+      _storyNumber = _choices[_storyNumber][choiceNumber];
   }
 
   void restart() => _storyNumber = 0;
